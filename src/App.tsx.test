@@ -1,0 +1,54 @@
+import React,{useContext,createContext} from 'react';
+
+let themeValues = {
+  light:{
+    background:"#fff",
+    margin:"10px",
+    width:"100px",
+    height:"100px",
+    color:"blue"
+  },
+  dark:{
+    background:"#000",
+    "text-align":"center",
+    margin:"10px",
+    width:"100px",
+    height:"100px",
+    color:"green"
+  }
+}
+
+const ThemeContext = createContext(themeValues.light)
+
+
+function App() {
+  return (
+    <div className="App">
+      <ThemeContext.Provider value={themeValues.dark}>
+        <Toolkit />
+      </ThemeContext.Provider>
+      <Toolkit />
+    </div>
+  );
+}
+
+function Toolkit(){
+  return (
+    <>
+      <ToolButton />
+    </>
+  )
+}
+
+function ToolButton(){
+  const theme = useContext(ThemeContext)
+
+
+  return (
+    <button style={theme}>
+      Botão
+    </button>
+  )
+}
+
+export default App;
